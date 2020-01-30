@@ -20,37 +20,28 @@ namespace ListDirectoryFiles
 
         private void btnSelectFolder_Click(object sender, EventArgs e)
         {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
+           
+                    String selectedPath = this.getSelectedFolder();
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
                     lblSelectedFolder.Visible = true;
-                    lblSelectedFolder.Text = fbd.SelectedPath.ToString();
-                    if (Directory.GetFiles(fbd.SelectedPath).Length > 0)
+                    lblSelectedFolder.Text = selectedPath;
+                    if (Directory.GetFiles(selectedPath).Length > 0)
                     {
                         lblSelectedFolder.Visible = true;
-                        lblSelectedFolder.Text = fbd.SelectedPath.ToString();
+                        lblSelectedFolder.Text = selectedPath;
                     }
                     else
                     {
                         lblError.Visible = true;
                     }
+                    DataTable fDataTable = this.getDataTable();
 
-                    DataTable filesDataTable = new DataTable();
-                    filesDataTable.Columns.Add("FileName");
-                    filesDataTable.Columns.Add("CreationTime");
-                    filesDataTable.Columns.Add("UpdationTime");
-                    filesDataTable.Columns.Add("Extension");
-                    filesDataTable.Columns.Add("Size");
-                    filesDataTable.Columns.Add("FilePath");
-
-
-                    foreach (var fi in Directory.GetFiles(fbd.SelectedPath))
+                // get all files from directory 
+                    foreach (var fi in Directory.GetFiles(selectedPath))
                     {
+                        // iterating through each files from directory to get file information and adding to row
                         FileInfo oFileInfo = new FileInfo(fi);
-                        DataRow row = filesDataTable.NewRow();
+                        DataRow row = fDataTable.NewRow();
                         row["FileName"] = oFileInfo.Name;
                         row["CreationTime"] = oFileInfo.CreationTime.ToString();
                         row["UpdationTime"] = oFileInfo.LastWriteTime.ToString();
@@ -58,19 +49,53 @@ namespace ListDirectoryFiles
                         row["Size"] = (oFileInfo.Length/1024).ToString() + " KB";
                         row["FilePath"] = oFileInfo.Directory.ToString()+oFileInfo.DirectoryName.ToString();
 
-                        filesDataTable.Rows.Add(row);
+                        fDataTable.Rows.Add(row);
                     }
                     dataGridViewFiles.Visible = true;
-                    dataGridViewFiles.DataSource = filesDataTable;
+                    dataGridViewFiles.DataSource = fDataTable;
                   
 
 
-                }
-            }
+                
+            
+        }
+
+        //SetUp data table defination to fill out the data
+        public DataTable getDataTable()
+        {
+            DataTable filesDataTable = new DataTable();
+            filesDataTable.Columns.Add("FileName");
+            filesDataTable.Columns.Add("CreationTime");
+            filesDataTable.Columns.Add("UpdationTime");
+            filesDataTable.Columns.Add("Extension");
+            filesDataTable.Columns.Add("Size");
+            filesDataTable.Columns.Add("FilePath");
+            return filesDataTable;
         }
 
 
+        ////Open file dialog to select the folder 
+        public string getSelectedFolder()
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
 
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    return fbd.SelectedPath;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+
+          
+                
+        }
+
+        // cleanup the gridview and reset the all label values
         private void btnReset_Click(object sender, EventArgs e)
         {
             lblError.Visible = false;
