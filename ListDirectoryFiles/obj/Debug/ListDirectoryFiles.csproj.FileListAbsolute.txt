@@ -1,0 +1,9 @@
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\obj\Debug\ListDirectoryFiles.csprojAssemblyReference.cache
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\obj\Debug\ListDirectoryFiles.ListFiles.resources
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\obj\Debug\ListDirectoryFiles.Properties.Resources.resources
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\obj\Debug\ListDirectoryFiles.csproj.GenerateResource.cache
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\bin\Debug\ListDirectoryFiles.exe.config
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\bin\Debug\ListDirectoryFiles.exe
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\bin\Debug\ListDirectoryFiles.pdb
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\obj\Debug\ListDirectoryFiles.exe
+C:\Users\Kaival Patel\source\repos\ListDirectoryFiles\ListDirectoryFiles\obj\Debug\ListDirectoryFiles.pdb
